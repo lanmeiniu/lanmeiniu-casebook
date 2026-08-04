@@ -1,28 +1,35 @@
 # lanmeiniu Technical Casebook
 
-个人技术案例集，基于真实项目经历脱敏整理。
+投递前最终稿源码。
 
-## 当前站点结构
+## 文件结构
 
 ```text
-.
-├── index.html
-├── CNAME
-├── .nojekyll
-├── README.md
-└── assets
-    ├── css
-    │   └── style.css
-    ├── js
-    │   └── app.js
-    └── images
-        ├── ward-order-lifecycle.png
-        ├── ward-cancel-consistency.png
-        ├── ward-plan-rules.png
-        ├── queue-entry.png
-        ├── queue-dispatch.png
-        ├── queue-recovery.png
-        ├── periodontal-data-loop.svg
-        ├── periodontal-ai-loop.png
-        └── periodontal-rules.svg
+index.html
+.nojekyll
+CNAME
+README.md
 ```
+
+## 说明
+
+- `index.html` 为完整单文件源码。
+- 页面样式、交互、图示均已内嵌。
+- 当前图示保留 V6 版本视觉效果。
+- 无水印。
+- 可直接部署到 GitHub Pages。
+- GitHub Pages 推荐配置：`main` 分支 + `/ (root)`。
+
+## 自定义域名
+
+当前 `CNAME`：
+
+```text
+lanmeiniu.top
+```
+
+如暂时不绑定自定义域名，可删除 `CNAME` 文件。
+
+## 后续修改
+
+主要直接编辑 `index.html` 即可。
