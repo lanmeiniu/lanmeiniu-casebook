@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+<title>复杂业务系统设计与技术实践 · lanmeiniu</title>
+<meta content="lanmeiniu" name="author"/><link href="https://lanmeiniu.top/" rel="canonical"/><link href="assets/css/style.css" rel="stylesheet"/></head>
+<body>
+<header class="topbar">
+<div class="wrap nav">
+<div class="brand">LANMEINIU</div>
+<div class="nav-note">真实项目 · 脱敏展示</div>
+</div>
+</header>
+<main class="wrap">
+<section class="hero">
+<span class="eyebrow">COMPLEX BUSINESS SYSTEMS</span>
+<h1>复杂业务系统设计<br/>与技术实践</h1>
+<p>以真实医疗信息化项目为背景，展示复杂规则建模、跨领域一致性、多规则调度、团队交付与 AI 应用工程。页面只展示抽象后的业务和技术关系，不公开医院名称、患者信息、内部状态编码、参数名和系统字段。</p>
+
+
+<div class="profile-signature">
+<div class="profile-name">LANMEINIU · TECHNICAL CASEBOOK</div>
+<div class="profile-tags">Complex Business Systems / Java / Healthcare IT</div>
+<div class="profile-links">
+<a href="https://lanmeiniu.top" rel="noopener noreferrer" target="_blank">lanmeiniu.top</a>
+</div>
+</div>
+</section>
+<div class="project-tabs">
+<button class="project-tab active" data-case="ward"><small>CASE 01</small><strong>HIS 病区护士站</strong><span>生命周期 · 一致性 · 逆向处理</span></button>
+<button class="project-tab" data-case="queue"><small>CASE 02</small><strong>HIS 排队叫号</strong><span>队列模型 · 调度 · 实时恢复</span></button>
+<button class="project-tab" data-case="perio"><small>CASE 03</small><strong>牙周专科 / AI</strong><span>系统架构 · 数据闭环 · AI 安全</span></button>
+</div>
+<div class="stage">
+<!-- ========== CASE 01 ========== -->
+<section class="case active" id="ward">
+<div class="case-head">
+<div>
+<span class="eyebrow">CASE 01 · 技术深度</span>
+<h2>医嘱生命周期与一致性治理</h2>
+<p>医嘱复核不是单点动作。复核通过会触发计划生成，并进一步影响药品、费用、检查检验与临床执行；取消医嘱时还要反向处理已产生的业务副作用。</p>
+</div>
+<div class="role">本人：规则设计 / 开发 / 重构</div>
+</div>
+<div class="subtabs">
+<button class="subtab active" data-panel="ward-life">医嘱生命周期</button>
+<button class="subtab" data-panel="ward-cancel">取消复核一致性</button>
+<button class="subtab" data-panel="ward-rules">计划生成规则</button></div>
+<div class="panel active" id="ward-life">
+<div class="panel-head">
+<div><span class="eyebrow">01 / HIS 病区护士站</span><h3>医嘱生命周期</h3></div>
+<p>从医生开立、护士复核到计划生成，再进入药品、费用、检查检验和临床执行领域；长期医嘱通过复核触发首次生成，并由定时任务持续续期。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="01 / HIS 病区护士站" data-lightbox-src="assets/images/ward-order-lifecycle.png" data-lightbox-title="医嘱生命周期" type="button">
+<img alt="医嘱生命周期" class="portfolio-image" src="assets/images/ward-order-lifecycle.png"/>
+</button>
+</div>
+</div>
+<div class="panel" id="ward-cancel">
+<div class="panel-head">
+<div><span class="eyebrow">02 / HIS 病区护士站</span><h3>取消复核与一致性治理</h3></div>
+<p>同一医嘱资源可能同时发生发药与取消复核。通过并发互斥、最新状态读取、状态机校验和逆向副作用处理，确保操作结果一致。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="02 / HIS 病区护士站" data-lightbox-src="assets/images/ward-cancel-consistency.png" data-lightbox-title="取消复核与一致性治理" type="button">
+<img alt="取消复核与一致性治理" class="portfolio-image" src="assets/images/ward-cancel-consistency.png"/>
+</button>
+</div>
+</div>
+<div class="panel" id="ward-rules">
+<div class="panel-head">
+<div><span class="eyebrow">03 / HIS 病区护士站</span><h3>医嘱计划生成规则模型</h3></div>
+<p>计划生成先按药品、检查、检验、治疗分流，各自执行专属规则，再进入公共规则统一修正，最终生成医嘱计划。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="03 / HIS 病区护士站" data-lightbox-src="assets/images/ward-plan-rules.png" data-lightbox-title="医嘱计划生成规则模型" type="button">
+<img alt="医嘱计划生成规则模型" class="portfolio-image" src="assets/images/ward-plan-rules.png"/>
+</button>
+</div>
+</div><div class="truth">
+<div class="mine"><small>本人设计 / 开发</small><b>计划规则、状态机、Redisson 并发控制、医嘱复核领域化重构</b></div>
+<div class="team"><small>团队方案</small><b>本地消息记录 + RocketMQ 可靠投递由团队共同维护</b></div>
+<div class="review"><small>后续复盘</small><b>消费幂等、告警、对账和人工补偿属于后续优化方向</b></div>
+</div>
+</section>
+<!-- ========== CASE 02 ========== -->
+<section class="case" id="queue">
+<div class="case-head">
+<div>
+<span class="eyebrow">CASE 02 · 方案与带队落地</span>
+<h2>多规则候诊队列与实时调度</h2>
+<p>核心不是 Redis 本身，而是如何将患者身份、候诊单元、多医院规则、比例调度、过号插队与终端实时同步组织成一个可配置的调度系统。</p>
+</div>
+<div class="role">小组长 / 技术负责人 · 1 产品 + 2 前端 + 3 后端</div>
+</div>
+<div class="subtabs">
+<button class="subtab active" data-panel="queue-entry">患者进入候诊</button><button class="subtab" data-panel="queue-model">候诊调度策略</button><button class="subtab" data-panel="queue-recovery">实时通信恢复</button><button class="subtab" data-panel="queue-lead">带队落地</button></div>
+<div class="panel active" id="queue-entry">
+<div class="panel-head">
+<div><span class="eyebrow">04 / HIS 排队叫号</span><h3>患者进入候诊系统</h3></div>
+<p>患者在建档或分诊登记阶段完成身份建模，生成候诊对象后，再按科室、诊室或组合候诊单元进行隔离，并进入普通候诊组或优先呼叫组。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="04 / HIS 排队叫号" data-lightbox-src="assets/images/queue-entry.png" data-lightbox-title="患者进入候诊系统" type="button">
+<img alt="患者进入候诊系统" class="portfolio-image" src="assets/images/queue-entry.png"/>
+</button>
+</div>
+</div><div class="panel" id="queue-model">
+<div class="panel-head">
+<div><span class="eyebrow">05 / HIS 排队叫号</span><h3>候诊调度策略</h3></div>
+<p>优先呼叫组与普通候诊组进入统一调度策略中心，通过可配置比例、预呼叫人数、过号顺延和护士插队规则计算下一位患者。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="05 / HIS 排队叫号" data-lightbox-src="assets/images/queue-dispatch.png" data-lightbox-title="候诊调度策略" type="button">
+<img alt="候诊调度策略" class="portfolio-image" src="assets/images/queue-dispatch.png"/>
+</button>
+</div>
+</div>
+<div class="panel" id="queue-recovery">
+<div class="panel-head">
+<div><span class="eyebrow">06 / HIS 排队叫号</span><h3>实时通信与异常恢复</h3></div>
+<p>叫号业务状态经消息与长连接实时推送到终端，应用层 ACK 确认终端真正处理。异常重连后重新拉取消费信息并恢复业务状态，数据库负责最终兜底。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="06 / HIS 排队叫号" data-lightbox-src="assets/images/queue-recovery.png" data-lightbox-title="实时通信与异常恢复" type="button">
+<img alt="实时通信与异常恢复" class="portfolio-image" src="assets/images/queue-recovery.png"/>
+</button>
+</div>
+</div>
+<div class="panel" id="queue-lead">
+<div class="panel-head">
+<div><span class="eyebrow">DELIVERY</span><h3>把医院需求转成团队可以执行的版本</h3></div>
+<p>作为小组长与技术负责人，承担版本讲解、需求确认、技术方案、排期、上线推进与后续交接。</p>
+</div>
+<div class="lead-grid">
+<div class="lead"><small>TEAM</small><h4>1 产品 + 2 前端 + 3 后端</h4><p>负责技术方案、排期和版本推进，成员负责具体模块开发与执行。</p></div>
+<div class="lead"><small>REQUIREMENT</small><h4>演示 → 意见 → 确认</h4><p>系统演示会上讲解版本能力、收集医院意见；已有能力能满足的诉求，优先推动复用而不是重复定制。</p></div>
+<div class="lead"><small>DELIVERY</small><h4>首家试点上线</h4><p>早期规则较乱，统一上线时间点推进；问题能够较快定位修复，并在交接时整理问题、建议和文档。</p></div>
+</div>
+</div>
+<div class="truth">
+<div class="mine"><small>本人设计 / 负责</small><b>框架、数据库、队列模型、医院差异适配、需求确认、排期与推进</b></div>
+<div class="team"><small>团队方案</small><b>Netty、锁及实时通信共同参与方案，成员具体实现</b></div>
+<div class="review"><small>案例重点</small><b>规则抽象 + 调度设计 + 团队交付，而不是中间件堆叠</b></div>
+</div>
+</section>
+<!-- ========== CASE 03 ========== -->
+<section class="case" id="perio">
+<div class="case-head">
+<div>
+<span class="eyebrow">CASE 03 · 0 → 1 / AI 应用工程</span>
+<h2>牙周诊疗数字化与 AI 辅助闭环</h2>
+<p>先把牙周检查、图片、指标和报表变成结构化业务系统，再让 AI 进入可控的辅助建议流程，而不是把大模型当成独立聊天功能。</p>
+</div>
+<div class="role">本人：需求 → 数据库 → 开发 → AI Demo</div>
+</div>
+<div class="subtabs">
+<button class="subtab active" data-panel="perio-arch">数据闭环</button><button class="subtab" data-panel="perio-ai">AI 安全闭环</button><button class="subtab" data-panel="perio-rules">规则诊断</button></div>
+<div class="panel active" id="perio-arch">
+<div class="panel-head">
+<div><span class="eyebrow">07 / 牙周专科 / 0→1 业务建模</span><h3>数据模型与业务闭环</h3></div>
+<p>聚焦牙周项目最能体现设计能力的部分：如何把患者、就诊、牙周检查、牙齿、点位、指标、图片、规则、报表和 AI 串成完整业务闭环。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="07 / 牙周专科 / 0→1 业务建模" data-lightbox-src="assets/images/periodontal-data-loop.svg" data-lightbox-title="数据模型与业务闭环" type="button">
+<img alt="数据模型与业务闭环" class="portfolio-image" src="assets/images/periodontal-data-loop.svg"/>
+</button>
+</div>
+</div>
+<div class="panel" id="perio-ai">
+<div class="panel-head">
+<div><span class="eyebrow">08 / 牙周专科 / AI</span><h3>AI 安全闭环图</h3></div>
+<p>患者必要信息与牙周检查数据进入模型前先脱敏；输出采用固定结构并经过安全规则校验，不合规则返回默认结果，随后由医生查看、修改和确认。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="08 / 牙周专科 / AI" data-lightbox-src="assets/images/periodontal-ai-loop.png" data-lightbox-title="AI 安全闭环图" type="button">
+<img alt="AI 安全闭环图" class="portfolio-image" src="assets/images/periodontal-ai-loop.png"/>
+</button>
+</div>
+</div>
+<div class="panel" id="perio-rules">
+<div class="panel-head">
+<div><span class="eyebrow">09 / 牙周专科 / 规则制定</span><h3>牙周规则诊断图</h3></div>
+<p>与业务方共同制定规则，我负责将牙周检查从点位 / 整牙两层业务模型抽象为结构化数据，并输出统计结果与辅助提示，最终由医生修改和确认。</p>
+</div>
+<div class="portfolio-image-wrap">
+<button class="portfolio-image-btn" data-lightbox-project="09 / 牙周专科 / 规则制定" data-lightbox-src="assets/images/periodontal-rules.svg" data-lightbox-title="牙周规则诊断图" type="button">
+<img alt="牙周规则诊断图" class="portfolio-image" src="assets/images/periodontal-rules.svg"/>
+</button>
+</div>
+</div><div class="truth">
+<div class="mine"><small>本人设计 / 开发</small><b>需求、数据库、数据结构、批量图片导入、AI Demo 与安全控制</b></div>
+<div class="team"><small>业务价值</small><b>从手工录入和重复上传，走向无纸化、自动报表和结构化归档</b></div>
+<div class="review"><small>AI 边界</small><b>AI 是辅助建议，不包装为自动确诊；医生保持最终判断权</b></div>
+</div>
+</section>
+</div>
+</main>
+<footer>
+<div class="wrap footer-meta">
+<span>© 2026 <b>lanmeiniu</b> · Technical Casebook</span>
+<span><a href="https://lanmeiniu.top" rel="noopener noreferrer" target="_blank">lanmeiniu.top</a></span>
+</div>
+</footer>
+<div aria-hidden="true" class="lightbox" id="lightbox">
+<div class="lightbox-inner">
+<div class="lightbox-head">
+<div class="lightbox-title">
+<small id="lightboxProject"></small>
+<strong id="lightboxTitle"></strong>
+</div>
+<button class="lightbox-close" id="lightboxClose" type="button">关闭</button>
+</div>
+<img alt="" id="lightboxImage"/>
+</div>
+</div>
+<script defer="" src="assets/js/app.js"></script></body>
+</html>
