@@ -43,3 +43,25 @@ document.getElementById('lightbox').addEventListener('click',e=>{
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape') closeLightbox();
 });
+
+
+// Basic anti-copy layer.
+// Note: public frontend content can still be inspected via DevTools/source.
+document.addEventListener('copy', (e) => e.preventDefault());
+document.addEventListener('cut', (e) => e.preventDefault());
+document.addEventListener('contextmenu', (e) => e.preventDefault());
+
+document.addEventListener('dragstart', (e) => {
+  if (e.target && e.target.tagName === 'IMG') {
+    e.preventDefault();
+  }
+});
+
+document.addEventListener('keydown', (e) => {
+  const mod = e.ctrlKey || e.metaKey;
+  if (!mod) return;
+  const key = e.key.toLowerCase();
+  if (key === 'c' || key === 'x' || key === 'a') {
+    e.preventDefault();
+  }
+});
